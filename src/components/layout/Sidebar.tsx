@@ -3,15 +3,22 @@ import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, To
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import GroupWorkIcon from '@mui/icons-material/GroupWork';
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import BuildIcon from '@mui/icons-material/Build';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import GroupsIcon from '@mui/icons-material/Groups';
+import BusinessIcon from '@mui/icons-material/Business';
 import { useAuth } from '../../hooks/useAuth';
 
 const menuItems = [
   { text: 'Dashboard', path: '/', icon: <DashboardIcon />, roles: ['GESTOR', 'PRESIDENTE', 'ASSOCIADO'] },
   { text: 'Associados', path: '/associados', icon: <PeopleIcon />, roles: ['GESTOR', 'PRESIDENTE', 'ASSOCIADO'] },
   { text: 'Conselhos', path: '/conselhos', icon: <GroupWorkIcon />, roles: ['GESTOR', 'PRESIDENTE'] },
-  { text: 'Equipamentos', path: '/equipamentos', icon: <HomeWorkIcon />, roles: ['GESTOR', 'PRESIDENTE'] },
-  // Adicione outros itens de menu aqui
+  { text: 'Equipamentos', path: '/equipamentos', icon: <BuildIcon />, roles: ['GESTOR', 'PRESIDENTE'] },
+  { text: 'Reuniões do Conselho', path: '/reunioes-conselho', icon: <GroupsIcon />, roles: ['GESTOR', 'PRESIDENTE'] },
+  { text: 'Reuniões da Secretaria', path: '/reunioes-secretaria', icon: <BusinessIcon />, roles: ['GESTOR'] },
+  { text: 'Produtos', path: '/produtos', icon: <ShoppingBasketIcon />, roles: ['GESTOR'] },
+  { text: 'Serviços', path: '/servicos', icon: <MiscellaneousServicesIcon />, roles: ['GESTOR'] },
 ];
 
 export const SidebarContent = () => {

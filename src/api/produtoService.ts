@@ -1,20 +1,34 @@
 import apiClient from './axiosConfig';
 
-// Interface baseada no modelo Produto.java
 export interface Produto {
   idproduto: number;
   nome: string;
   descricao?: string;
 }
 
-// Mapeado de @GetMapping | GET /produtos
-export const getProdutos = async (): Promise<Produto[]> => {
-  const response = await apiClient.get('/produtos');
+export type ProdutoPayload = Omit<Produto, 'idproduto'>;
+
+export const getProdutos = async (nome?: string): Promise<Produto[]> => {
+  const params = nome ? { nome } : {};
+  const response = await apiClient.get('/produtos', { params });
   return response.data;
 };
 
-// Mapeado de @PostMapping | POST /produtos
-export const createProduto = async (produtoData: Omit<Produto, 'idproduto'>): Promise<Produto> => {
-  const response = await apiClient.post('/produtos', produtoData);
+export const getProdutoById = async (id: number): Promise<Produto> => {
+  const response = await apiClient.get(`/produtos/${id}`);
   return response.data;
+};
+
+export const createProduto = async (payload: ProdutoPayload): Promise<Produto> => {
+  const response = await apiClient.post('/produtos', payload);
+  return response.data;
+};
+
+export const updateProduto = async (id: number, payload: ProdutoPayload): Promise<Produto> => {
+  const response = await apiClient.put(`/produtos/${id}`, payload);
+  return response.data;
+};
+
+export const deleteProduto = async (id: number): Promise<void> => {
+  await apiClient.delete(`/produtos/${id}`);
 };
